@@ -1,5 +1,6 @@
 from mcp.server.fastmcp import FastMCP
 import logging
+import context_extractor
 import sys
 
 # Set up logging to help debug
@@ -1553,6 +1554,12 @@ async def get_knowledge(keys: list[str]) -> str:
         result += str(KNOWLEDGE_JSON[k]) + "\n"
 
     return result
+
+
+@mcp.tool()
+async def get_app_context(project_id: str, page_name: str, auth_cookie: str) -> str:
+    return context_extractor.build_llm_context(project_id, page_name, auth_cookie)
+
 
 if __name__ == "__main__":
     try:

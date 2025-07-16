@@ -8,14 +8,12 @@ origin = "https://www.wavemakeronline.com"  # <-- Set this appropriately
 
 def get_api_response(url, auth_cookie):
     try:
-        print(url)
         headers = {
             "Cookie" :
                 f'auth_cookie = {auth_cookie}'
         }
         response = requests.get(url, headers=headers, allow_redirects=True)
         response.raise_for_status()
-        print(response)
         return response.json()
     except Exception:
         return None
@@ -287,6 +285,3 @@ def get_app_context(project_id, page_name, auth_cookie):
 
 def build_llm_context(project_id, page_name, auth_cookie):
     return json.dumps(get_app_context(project_id, page_name, auth_cookie))  # <-- serialize to JSON
-
-# For pretty printing in the console:
-print(build_llm_context("WMPRJ2c91808897762f7b0197870358240282", "Main", "0yvzDZsLn2P6SWBqd7v6Z5s7e16ab8ece34d9"))
