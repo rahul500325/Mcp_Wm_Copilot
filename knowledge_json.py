@@ -1558,6 +1558,13 @@ async def get_knowledge(keys: list[str]) -> str:
 
 @mcp.tool()
 async def get_app_context(project_id: str, page_name: str, auth_cookie: str) -> str:
+    """
+    Get the application context for a specific project and page.
+    project_id: The ID of the project.
+    page_name: The name of the page to get context for.
+    auth_cookie: The authentication cookie for the user.
+    Returns: str: The application context in JSON format.
+    """
     return context_extractor.build_llm_context(project_id, page_name, auth_cookie)
 
 
